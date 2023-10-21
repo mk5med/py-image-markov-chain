@@ -1,1 +1,5 @@
-pillow
+pillow # Image processing
+black # Formatting
+pylint # Linting
+pytest
+mypy # Typing
