@@ -17,13 +17,19 @@ from markov.setup_model import setup_model
 
 def create_string(model, initial: str, length: int, separator=""):
     lastLetter = initial
-    outStr = initial + separator
+    outArr = [initial]
+
+    # Loop length-1 times because the first letter is already set
     for i in range(length - 1):
+        # Apply the model to get the next letter
         newLetter = apply_model(model, lastLetter, random.random())
-        outStr += newLetter + separator
+
+        # Append the letter to the output
+        outArr.append(newLetter)
+
         lastLetter = newLetter
 
-    return outStr
+    return separator.join(outArr)
 
 
 def process_text():
@@ -57,5 +63,5 @@ def process_img():
 
 
 if __name__ == "__main__":
-    # processTextInput()
+    # print(process_text())
     process_img()
