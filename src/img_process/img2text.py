@@ -1,3 +1,7 @@
+"""
+Methods for encoding text as an image
+"""
+
 from PIL import Image
 
 

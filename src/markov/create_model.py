@@ -1,12 +1,21 @@
-def create_model(wordCounts, sampleCount):
+"""
+Methods for creating models
+"""
+
+
+def create_model(ngramCounts, sampleCount):
+    """
+    Given ngram count and sample count dictionaries this generates
+    a model that defines the probability of navigating to an ngram from another ngram
+    """
     model = {}
     for ngram in sampleCount:
         samples = sampleCount[ngram]
 
         probabilities = []
         # Calculate the probabilities
-        for key in wordCounts[ngram]:
-            probability = wordCounts[ngram][key] / samples
+        for key in ngramCounts[ngram]:
+            probability = ngramCounts[ngram][key] / samples
             probabilities.append((probability, key))
 
         # Order the probabilities from low to high

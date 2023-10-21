@@ -1,4 +1,10 @@
-def calculate_statistics(text):
+"""
+Methods for calculating the statistics of text
+Used to generate a finite state machine with `create_model`
+"""
+
+
+def calculate_statistics(text: str):
     sampleCount = {}
     ngramCount = {}
     ngrams = text.split(" ")

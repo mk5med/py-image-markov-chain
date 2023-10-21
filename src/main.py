@@ -1,3 +1,7 @@
+"""
+Main entrypoint for the program
+"""
+
 import random
 import sys
 import os
@@ -5,8 +9,8 @@ import os
 # sys.path.insert(0, os.getcwd())
 
 from img_process.text2img import text2img
-from input_sources.get_input_from_file import get_input_from_file
-from input_sources.read_all_input import read_all_input
+from input_sources.get_input_from_file import get_input_from_img
+from input_sources.read_stdin import read_all_input
 from markov.apply_model import apply_model, random_key
 from markov.setup_model import setup_model
 
@@ -38,7 +42,7 @@ def process_img():
     Process an image passed as an argument
     Generates 2D textures
     """
-    text = get_input_from_file()
+    text = get_input_from_img()
     model = setup_model(text)
 
     # Create sample images
