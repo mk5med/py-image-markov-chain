@@ -2,11 +2,12 @@
 Methods for calculating the statistics of text
 Used to generate a finite state machine with `create_model`
 """
+import typing
 
 
 def calculate_statistics(text: str):
-    sampleCount = {}
-    ngramCount = {}
+    sampleCount: typing.Dict[str, int] = {}
+    ngramCount: typing.Dict[str, typing.Dict[str, int]] = {}
     ngrams = text.split(" ")
 
     # Start from index 1 to end of the ngrams list
