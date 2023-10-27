@@ -1,4 +1,6 @@
-**/np_*
 **/__pycache__
 .venv
 **/.mypy_cache
+**/.pytest_cache
+
+**/np_*

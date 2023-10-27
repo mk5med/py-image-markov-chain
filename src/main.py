@@ -3,13 +3,12 @@ Main entrypoint for the program
 """
 
 import random
-import sys
-import os
+import argparse
 
 # sys.path.insert(0, os.getcwd())
 
+from img_process.img2text import img2text
 from img_process.text2img import text2img
-from input_sources.get_input_from_file import get_input_from_img
 from input_sources.read_stdin import read_all_input
 from markov.apply_model import apply_model, random_key
 from markov.setup_model import setup_model
@@ -43,25 +42,36 @@ def process_text():
     return create_string(model, random_key(model), 1500, " ")
 
 
-def process_img():
+def process_img(imagePath: str):
     """
     Process an image passed as an argument
     Generates 2D textures
     """
-    text = get_input_from_img()
-    model = setup_model(text)
+    (masks, maskHash) = img2text(imagePath)
+
+    model = setup_model(" ".join(maskHash))
 
     # Create sample images
     imgs = []
+
     for i in range(4):
         output = create_string(model, random_key(model), 1500, " ")
-        print(output)
-        img = text2img(output)
+        img = text2img(output, masks)
         imgs.append(img)
         img.show()
     return imgs
 
 
 if __name__ == "__main__":
-    # print(process_text())
-    process_img()
+    parser = argparse.ArgumentParser(
+        prog="PY-Markov Chain",
+    )
+    parser.add_argument("-t", "--text")
+    parser.add_argument("-i", "--image")
+
+    args = parser.parse_args()
+
+    if args.text:
+        print(process_text())
+    elif args.image:
+        process_img(args.image)
