@@ -4,5 +4,13 @@
 
 This project implements a markov chain in Python that generates new real-looking text from input text.
 
-This project also includes a method to apply markov chains to black-and-white images and generate similar output images.
+This project also includes a method to apply markov chains to images and generate similar output images with any length. See [sample](#sample) for a demo. 
 
+# Sample
+Input (128x128px)
+
+![Sample input](./assets/input_map_large.png)
+
+Output (128px x 500px)
+
+![Sample output](./assets/output_large.PNG)
