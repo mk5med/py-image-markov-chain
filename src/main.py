@@ -31,7 +31,7 @@ def create_string(model, initial: str, length: int, separator=""):
     return separator.join(outArr)
 
 
-def process_text():
+def process_text(length: int):
     """
     Process input from STDIN
     Generates real-looking text
@@ -39,10 +39,10 @@ def process_text():
     text = read_all_input()
     model = setup_model(text)
 
-    return create_string(model, random_key(model), 1500, " ")
+    return create_string(model, random_key(model), length, " ")
 
 
-def process_img(imagePath: str):
+def process_img(imagePath: str, length: int):
     """
     Process an image passed as an argument
     Generates 2D textures
@@ -54,8 +54,8 @@ def process_img(imagePath: str):
     # Create sample images
     imgs = []
 
-    for i in range(4):
-        output = create_string(model, random_key(model), 1500, " ")
+    for i in range(1):
+        output = create_string(model, random_key(model), length, " ")
         img = text2img(output, masks)
         imgs.append(img)
         img.show()
@@ -68,10 +68,11 @@ if __name__ == "__main__":
     )
     parser.add_argument("-t", "--text")
     parser.add_argument("-i", "--image")
+    parser.add_argument("-l", "--length", required=True)
 
     args = parser.parse_args()
 
     if args.text:
-        print(process_text())
+        print(process_text(int(args.length)))
     elif args.image:
-        process_img(args.image)
+        process_img(args.image, int(args.length))
