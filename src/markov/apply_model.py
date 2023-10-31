@@ -26,19 +26,15 @@ def apply_model(model, ngram: str, probability: float):
         ngram = random_key(model)
 
     # Select the available probabilities
-    probabilities = model[ngram]
+    probabilityIntervals = model[ngram]
 
-    # Select the first letter
-    chosenNgram = probabilities[0][1]
+    chosenNgram = None
 
     # Iterate through all probabilities
-    for prob, val in probabilities:
-        # The chosen letter is not in the current interval
-        if prob <= probability:
-            chosenNgram = val
-        # The interval was found
-        else:
-            # Exit the loop
+    for ngramProbability, ngramVal in probabilityIntervals:
+        # The probability is in the current probability interval
+        if probability <= ngramProbability:
+            chosenNgram = ngramVal
             break
 
     return chosenNgram
